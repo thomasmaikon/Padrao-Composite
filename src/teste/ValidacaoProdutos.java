@@ -104,4 +104,31 @@ class ValidacaoProdutos {
         double valorEsperado = 13.05;
         assertEquals(valorEsperado, caixaDecaixas.GetPreco());
     }
+
+    @Test
+    public void TesteCriandoProdutoCompostosComDescontos(){
+        Produto maca = new Maca();
+        Produto macaVerde = new MacaVerde();
+
+        Produto banana = new Banana();
+        Produto banana2 = new Banana();
+
+        Produto caixa = new CaixaProdutos("Caixa com 2 Produtos").
+                adicionarProduto(maca).
+                adicionarProduto(macaVerde);
+
+        Produto caixa2 = new CaixaProdutos("Caixa com 2 banans").
+                adicionarProduto(banana).adicionarProduto(banana2);
+
+        Produto caixa3 = new CaixaProdutos("Caixa com 2 macas e 1 banana").
+                adicionarProduto(maca).adicionarProduto(maca).adicionarProduto(banana);
+
+        Produto caixaDecaixas = new CaixaProdutos("Caixa Grandona").
+                adicionarProduto(caixa).
+                adicionarProduto(caixa2).
+                adicionarProduto(caixa3);
+
+        double valorEsperado = 13.32;
+        assertEquals(valorEsperado, caixaDecaixas.GetPreco());
+    }
 }
